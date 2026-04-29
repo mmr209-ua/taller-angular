@@ -21,6 +21,10 @@ export class AppComponent {
     this.mostrarForm = true;
   }
 
+  ocultarFormulario() {
+    this.mostrarForm = false;
+  }
+
   crearLista() {
     this.listas.push(this.nueva);
     this.nueva = new Lista();

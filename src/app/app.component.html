@@ -26,6 +26,17 @@
     box-sizing: inherit;
     position: relative;
   }
+
+  .cards {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .button {
+    margin: 0.25rem;
+  }
 </style>
 
 <main class="main">
@@ -35,15 +46,15 @@
       (close)="msg=''">
       {{msg}}
     </ngb-alert>
-    <div *ngFor="let lista of listas">
+    <div *ngFor="let lista of listas" class="cards">
       <div class="card" [ngStyle] = "{'background-color': lista.color}">
         <div class="card-header">
           <h5 class="card-title">{{lista.nombre}}</h5>
         </div>
         <div class="card-body">
-          <button class="btn btn-sm btn-primary">Ver detalle</button>
-          <button class="btn btn-sm btn-secondary">Modificar</button>
-          <button class="btn btn-sm btn-danger">Eliminar</button>
+          <button class="button btn btn-sm btn-primary">Ver detalle</button>
+          <button class="button btn btn-sm btn-secondary">Modificar</button>
+          <button class="button btn btn-sm btn-danger">Eliminar</button>
         </div>
       </div>
     </div>
@@ -57,8 +68,12 @@
       <p>Color: </p>
       <input type="color" id="color" name="color" required
         [(ngModel)]="nueva.color" name="color">
-      <button (click)="crearLista()">Crear lista</button>
+      <div>
+        <button (click)="crearLista()">Crear lista</button>
+        <button (click)="ocultarFormulario()">Cancelar</button>
+      </div>
     </form>
-    <button (click)="mostrarFormulario()">Añadir nueva lista</button>
+    
+    <button *ngIf="!mostrarForm" (click)="mostrarFormulario()">Añadir nueva lista</button>
   </div>
 </main>
