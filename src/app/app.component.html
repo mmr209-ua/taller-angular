@@ -57,7 +57,11 @@
             [lista]="lista"
             (cerrarDetalle)="ocultarDetalle(lista)">
           </app-lista>
-          <button (click)="mostrarDetalle(lista)" class="button btn btn-sm btn-primary">Ver detalle</button>
+          <button
+            (click)="lista.visible ? ocultarDetalle(lista) : mostrarDetalle(lista)"
+            class="button btn btn-sm btn-primary">
+            {{ lista.visible ? 'Ocultar detalle' : 'Ver detalle' }}
+          </button>
           <button class="button btn btn-sm btn-secondary">Modificar</button>
           <button class="button btn btn-sm btn-danger">Eliminar</button>
         </div>  
