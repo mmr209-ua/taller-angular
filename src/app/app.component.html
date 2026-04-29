@@ -37,11 +37,15 @@
     </ngb-alert>
     <div *ngFor="let lista of listas">
       <div class="card" [ngStyle] = "{'background-color': lista.color}">
-        {{lista.nombre}}
+        <div class="card-header">
+          <h5 class="card-title">{{lista.nombre}}</h5>
+        </div>
+        <div class="card-body">
+          <button class="btn btn-sm btn-primary">Ver detalle</button>
+          <button class="btn btn-sm btn-secondary">Modificar</button>
+          <button class="btn btn-sm btn-danger">Eliminar</button>
+        </div>
       </div>
-      <button>Ver detalle</button>
-      <button>Modificar</button>
-      <button>Eliminar</button>
     </div>
     <form *ngIf="mostrarForm">
       <p>Nombre: </p>
