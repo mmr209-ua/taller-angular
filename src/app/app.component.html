@@ -43,7 +43,7 @@
       <button>Modificar</button>
       <button>Eliminar</button>
     </div>
-    <form *ngIf="mostrarFormulario">
+    <form *ngIf="mostrarForm">
       <p>Nombre: </p>
       <input type="text" id="nombre" name="nombre" required
         [(ngModel)]="nueva.nombre" name="nombre">
@@ -53,8 +53,8 @@
       <p>Color: </p>
       <input type="color" id="color" name="color" required
         [(ngModel)]="nueva.color" name="color">
-      <button (click)="listas.push(nueva); mostrarFormulario=false">Crear lista</button>
+      <button (click)="crearLista()">Crear lista</button>
     </form>
-    <button (click)="nuevaLista()">Añadir nueva lista</button>
+    <button (click)="mostrarFormulario()">Añadir nueva lista</button>
   </div>
 </main>

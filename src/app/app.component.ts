@@ -11,13 +11,19 @@ export class AppComponent {
   msg = "Hola, bienvenido a mi proyecto en Angular";
   listas: Lista[] = [];
   nueva: Lista = new Lista();
-  mostrarFormulario = false;
+  mostrarForm = false;
 
   ngOnInit(): void {
     setTimeout(() =>  {this.msg = ''}, 5000);
   }
 
-  nuevaLista() {
-    this.mostrarFormulario = true;
+  mostrarFormulario() {
+    this.mostrarForm = true;
+  }
+
+  crearLista() {
+    this.listas.push(this.nueva);
+    this.nueva = new Lista();
+    this.mostrarForm = false;
   }
 }
