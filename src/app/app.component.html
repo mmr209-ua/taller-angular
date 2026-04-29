@@ -1,47 +1,6 @@
-<style>
-  h1 {
-    font-size: 3.125rem;
-    color: var(--gray-900);
-    font-weight: 500;
-    line-height: 100%;
-    letter-spacing: -0.125rem;
-    margin: 0;
-    font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
-  }
-
-  p {
-    margin: 0;
-    color: var(--gray-700);
-  }
-
-  main {
-    width: 100%;
-    min-height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    box-sizing: inherit;
-    position: relative;
-  }
-
-  .cards {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .button {
-    margin: 0.25rem;
-  }
-</style>
-
 <main class="main">
   <div class="container">
-    <h1>{{ title }}</h1>
+    <h1><strong>{{ title }}</strong></h1>
     <ngb-alert type="success" *ngIf="msg!=''" 
       (close)="msg=''">
       {{msg}}
@@ -57,16 +16,31 @@
             [lista]="lista"
             (cerrarDetalle)="ocultarDetalle(lista)">
           </app-lista>
-          <button
-            (click)="lista.visible ? ocultarDetalle(lista) : mostrarDetalle(lista)"
-            class="button btn btn-sm btn-primary">
-            {{ lista.visible ? 'Ocultar detalle' : 'Ver detalle' }}
+          <button *ngIf="!lista.visible" class="button btn btn-sm btn-primary" (click)="mostrarDetalle(lista)">
+            Ver detalle
           </button>
           <button class="button btn btn-sm btn-secondary">Modificar</button>
-          <button class="button btn btn-sm btn-danger">Eliminar</button>
+          <button
+            class="button btn btn-sm btn-danger"
+            (click)="abrirModalEliminar(confirmarEliminacionModal, lista)">
+            Eliminar
+          </button>
         </div>  
       </div>
     </div>
+
+    <ng-template #confirmarEliminacionModal let-modal>
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmar eliminación</h5>
+      </div>
+      <div class="modal-body">
+        <p>¿Quieres eliminar la lista <strong>{{ listaSeleccionada?.nombre }}</strong>?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="confirmarEliminacion(modal)">Eliminar</button>
+      </div>
+    </ng-template>
 
 
 
