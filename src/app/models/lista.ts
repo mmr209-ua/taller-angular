@@ -8,6 +8,6 @@ export class Lista {
         this.nombre="";
         this.descripcion="";
         this.color="#FFFFFF";
-        this.visible=true;
+        this.visible=false;
     }
 }

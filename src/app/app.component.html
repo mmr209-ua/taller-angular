@@ -52,12 +52,20 @@
           <h5 class="card-title">{{lista.nombre}}</h5>
         </div>
         <div class="card-body">
-          <button class="button btn btn-sm btn-primary">Ver detalle</button>
+          <app-lista
+            *ngIf="lista.visible"
+            [lista]="lista"
+            (cerrarDetalle)="ocultarDetalle(lista)">
+          </app-lista>
+          <button (click)="mostrarDetalle(lista)" class="button btn btn-sm btn-primary">Ver detalle</button>
           <button class="button btn btn-sm btn-secondary">Modificar</button>
           <button class="button btn btn-sm btn-danger">Eliminar</button>
-        </div>
+        </div>  
       </div>
     </div>
+
+
+
     <form *ngIf="mostrarForm">
       <p>Nombre: </p>
       <input type="text" id="nombre" name="nombre" required

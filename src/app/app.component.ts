@@ -30,4 +30,12 @@ export class AppComponent {
     this.nueva = new Lista();
     this.mostrarForm = false;
   }
+
+  mostrarDetalle(lista: Lista) {
+    lista.visible = true;
+  }
+
+  ocultarDetalle(lista: Lista): void {
+    lista.visible = false;
+  }
 }
