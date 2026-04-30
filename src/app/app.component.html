@@ -5,6 +5,28 @@
       (close)="msg=''">
       {{msg}}
     </ngb-alert>
+
+    <form *ngIf="mostrarForm" class="form-card" (ngSubmit)="crearLista()">
+      <h4>{{ listaSeleccionada ? 'Modificar lista' : 'Crear nueva lista' }}</h4>
+      <p>Nombre: </p>
+      <input type="text" id="nombre" name="nombre" required
+        [(ngModel)]="nueva.nombre" name="nombre">
+      <p>Descripción: </p>
+      <input type="text" id="descripcion" name="descripcion" required
+        [(ngModel)]="nueva.descripcion" name="descripcion">
+      <p>Color: </p>
+      <input type="color" id="color" name="color" required
+        [(ngModel)]="nueva.color" name="color">
+      <div>
+        <button type="submit" class="button btn btn-sm btn-primary">
+          {{ listaSeleccionada ? 'Guardar cambios' : 'Crear lista' }}
+        </button>
+        <button type="button" class="button btn btn-sm btn-secondary" (click)="ocultarFormulario()">Cancelar</button>
+      </div>
+    </form>
+    
+    <button *ngIf="!mostrarForm" class="button btn btn-sm btn-primary" (click)="mostrarFormulario()">Añadir nueva lista</button>
+
     <div *ngFor="let lista of listas" class="cards">
       <div class="card" [ngStyle] = "{'background-color': lista.color}">
         <div class="card-header">
@@ -19,7 +41,9 @@
           <button *ngIf="!lista.visible" class="button btn btn-sm btn-primary" (click)="mostrarDetalle(lista)">
             Ver detalle
           </button>
-          <button class="button btn btn-sm btn-secondary">Modificar</button>
+          <button class="button btn btn-sm btn-secondary" (click)="modificarLista(lista)">
+            Modificar
+          </button>
           <button
             class="button btn btn-sm btn-danger"
             (click)="abrirModalEliminar(confirmarEliminacionModal, lista)">
@@ -41,26 +65,5 @@
         <button type="button" class="btn btn-danger" (click)="confirmarEliminacion(modal)">Eliminar</button>
       </div>
     </ng-template>
-
-
-
-    <form *ngIf="mostrarForm" class="form-card">
-      <h4>Crear nueva lista</h4>
-      <p>Nombre: </p>
-      <input type="text" id="nombre" name="nombre" required
-        [(ngModel)]="nueva.nombre" name="nombre">
-      <p>Descripción: </p>
-      <input type="text" id="descripcion" name="descripcion" required
-        [(ngModel)]="nueva.descripcion" name="descripcion">
-      <p>Color: </p>
-      <input type="color" id="color" name="color" required
-        [(ngModel)]="nueva.color" name="color">
-      <div>
-        <button class="button btn btn-sm btn-primary" (click)="crearLista()">Crear lista</button>
-        <button class="button btn btn-sm btn-secondary" (click)="ocultarFormulario()">Cancelar</button>
-      </div>
-    </form>
-    
-    <button *ngIf="!mostrarForm" class="button btn btn-sm btn-primary" (click)="mostrarFormulario()">Añadir nueva lista</button>
   </div>
 </main>

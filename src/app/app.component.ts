@@ -23,16 +23,28 @@ export class AppComponent {
   }
 
   mostrarFormulario() {
+    this.listaSeleccionada = undefined;
+    this.nueva = new Lista();
     this.mostrarForm = true;
   }
 
   ocultarFormulario() {
     this.mostrarForm = false;
+    this.listaSeleccionada = undefined;
+    this.nueva = new Lista();
   }
 
   crearLista() {
-    this.listas.push(this.nueva);
+    if (this.listaSeleccionada) {
+      this.listaSeleccionada.nombre = this.nueva.nombre;
+      this.listaSeleccionada.descripcion = this.nueva.descripcion;
+      this.listaSeleccionada.color = this.nueva.color;
+    } else {
+      this.listas.push(this.nueva);
+    }
+
     this.nueva = new Lista();
+    this.listaSeleccionada = undefined;
     this.mostrarForm = false;
   }
 
@@ -55,5 +67,16 @@ export class AppComponent {
       this.listaSeleccionada = undefined;
     }
     modal.close();
+  }
+
+  modificarLista(lista: Lista): void {
+    this.listaSeleccionada = lista;
+    
+    this.nueva = new Lista();
+    this.nueva.nombre = lista.nombre;
+    this.nueva.descripcion = lista.descripcion;
+    this.nueva.color = lista.color;
+    
+    this.mostrarForm = true;
   }
 }
