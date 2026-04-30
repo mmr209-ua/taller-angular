@@ -40,10 +40,12 @@ export class AppComponent {
       this.listaSeleccionada.descripcion = this.nueva.descripcion;
       this.listaSeleccionada.color = this.nueva.color;
     } else {
+      this.nueva.id = Lista.obtenerSiguienteId();
+      this.nueva.fechaCreacion = new Date();
       this.listas.push(this.nueva);
     }
 
-    this.nueva = new Lista();
+    // No crear aquí otra instancia para evitar aumentar el contador dos veces.
     this.listaSeleccionada = undefined;
     this.mostrarForm = false;
   }
