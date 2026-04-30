@@ -16,7 +16,7 @@ En el Detalle de la Lista:
 ## Tareas opcionales II
 
 * [ ] Crear un componente que encapsule toda la lógica de una tarea individual
-* [ ] Filtrar LISTAS por visibles, no visibles y todas
+* [X] Filtrar LISTAS por visibles, no visibles y todas
 * [ ] Marcar una tarea como terminada
 * [ ] Filtrar TAREAS por acabadas, no acabadas y todas
 

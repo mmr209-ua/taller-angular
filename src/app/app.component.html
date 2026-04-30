@@ -27,7 +27,16 @@
     
     <button *ngIf="!mostrarForm" class="button btn btn-sm btn-primary" (click)="mostrarFormulario()">Añadir nueva lista</button>
 
-    <div *ngFor="let lista of listas" class="cards">
+    <div class="filtroListas" *ngIf="listas.length > 0">
+      <label for="filtroListas" class="form-label mb-0">Filtrar listas:</label>
+      <select id="filtroListas" class="form-select form-select-sm w-auto" [(ngModel)]="filtroListas" name="filtroListas">
+        <option value="todas">Todas</option>
+        <option value="visibles">Visibles</option>
+        <option value="noVisibles">No visibles</option>
+      </select>
+    </div>
+
+    <div *ngFor="let lista of listasFiltradas" class="cards">
       <div class="card" [ngStyle] = "{'background-color': lista.color}">
         <div class="card-header">
           <h5 class="card-title">{{lista.nombre}}</h5>

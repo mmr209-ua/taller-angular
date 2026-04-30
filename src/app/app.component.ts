@@ -15,6 +15,7 @@ export class AppComponent {
   nueva: Lista = new Lista();
   mostrarForm = false;
   listaSeleccionada?: Lista;
+  filtroListas: 'todas' | 'visibles' | 'noVisibles' = 'todas';
 
   constructor(private modalService: NgbModal) {}
 
@@ -80,5 +81,17 @@ export class AppComponent {
     this.nueva.color = lista.color;
     
     this.mostrarForm = true;
+  }
+
+  get listasFiltradas(): Lista[] {
+    if (this.filtroListas === 'visibles') {
+      return this.listas.filter((lista) => lista.visible);
+    }
+
+    if (this.filtroListas === 'noVisibles') {
+      return this.listas.filter((lista) => !lista.visible);
+    }
+
+    return this.listas;
   }
 }
