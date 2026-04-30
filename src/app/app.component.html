@@ -44,7 +44,8 @@
 
 
 
-    <form *ngIf="mostrarForm">
+    <form *ngIf="mostrarForm" class="form-card">
+      <h4>Crear nueva lista</h4>
       <p>Nombre: </p>
       <input type="text" id="nombre" name="nombre" required
         [(ngModel)]="nueva.nombre" name="nombre">
@@ -55,11 +56,11 @@
       <input type="color" id="color" name="color" required
         [(ngModel)]="nueva.color" name="color">
       <div>
-        <button (click)="crearLista()">Crear lista</button>
-        <button (click)="ocultarFormulario()">Cancelar</button>
+        <button class="button btn btn-sm btn-primary" (click)="crearLista()">Crear lista</button>
+        <button class="button btn btn-sm btn-secondary" (click)="ocultarFormulario()">Cancelar</button>
       </div>
     </form>
     
-    <button *ngIf="!mostrarForm" (click)="mostrarFormulario()">Añadir nueva lista</button>
+    <button *ngIf="!mostrarForm" class="button btn btn-sm btn-primary" (click)="mostrarFormulario()">Añadir nueva lista</button>
   </div>
 </main>
