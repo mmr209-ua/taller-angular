@@ -1,0 +1,6 @@
+<div class="tarea" *ngIf="tarea">
+	<input type="checkbox" [checked]="tarea.acabada" (change)="toggle()">
+	<span [style.text-decoration]="tarea.acabada ? 'line-through' : 'none'">
+		{{ tarea.nombre }}
+	</span>
+</div>

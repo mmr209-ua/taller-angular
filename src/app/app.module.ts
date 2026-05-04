@@ -7,11 +7,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { FormsModule } from '@angular/forms';
 import { ListaComponent } from './lista/lista.component';
+import { TareaComponent } from './tarea/tarea.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListaComponent
+    ListaComponent,
+    TareaComponent
   ],
   imports: [
     BrowserModule,

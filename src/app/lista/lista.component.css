@@ -5,10 +5,3 @@
 .card-body p {
     margin-bottom: 1rem;
 }
-
-.tarea {
-    display: flex; 
-    align-items: center; 
-    margin-bottom: 0.5rem; 
-    gap: 0.25rem;
-}

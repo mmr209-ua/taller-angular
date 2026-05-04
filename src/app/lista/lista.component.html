@@ -14,12 +14,11 @@
 		</div>
 
 		<div>
-			<div class="tarea" *ngFor="let tarea of tareasFiltradas">
-				<input type="checkbox" [checked]="tarea.acabada" (change)="toggleTareaAcabada(tarea)">
-				<span [style.text-decoration]="tarea.acabada ? 'line-through' : 'none'">
-					{{ tarea.nombre }}
-				</span>
-			</div>
+			<app-tarea
+				*ngFor="let tarea of tareasFiltradas"
+				[tarea]="tarea"
+				(cambiarEstado)="toggleTareaAcabada(tarea)">
+			</app-tarea>
 		</div>
 
 		<button class="button btn btn-sm btn-primary" (click)="cerrar()">
