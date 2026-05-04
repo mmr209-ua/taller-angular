@@ -20,7 +20,6 @@ export class Lista {
         this.color="#FFFFFF";
         this.visible=true;
         this.fechaCreacion = new Date();
-        // Tareas de ejemplo
         this.tareas = [
             new Tarea("Tarea 1"),
             new Tarea("Tarea 2"),
