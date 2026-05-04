@@ -1,3 +1,5 @@
+import { Tarea } from './tarea';
+
 export class Lista {
     nombre: string;
     descripcion: string;
@@ -5,6 +7,7 @@ export class Lista {
     visible: boolean;
     fechaCreacion: Date;
     id!: number;
+    tareas: Tarea[] = [];
     private static contadorId = 0; 
 
     static obtenerSiguienteId(): number {
@@ -15,7 +18,13 @@ export class Lista {
         this.nombre="";
         this.descripcion="";
         this.color="#FFFFFF";
-        this.visible=false;
+        this.visible=true;
         this.fechaCreacion = new Date();
+        // Tareas de ejemplo
+        this.tareas = [
+            new Tarea("Tarea 1"),
+            new Tarea("Tarea 2"),
+            new Tarea("Tarea 3")
+        ];
     }
 }

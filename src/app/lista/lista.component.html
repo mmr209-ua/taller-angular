@@ -1,14 +1,25 @@
-<div *ngIf="lista" >
+<div *ngIf="lista">
 	<div class="card-body">
 		<p><strong>Descripción:</strong> {{ lista.descripcion }}</p>
 		<p><strong>Fecha de creación:</strong> {{ lista.fechaCreacion | date:'dd/MM/yyyy' }}</p>
-		<p><strong>ID:</strong> {{ lista.id }}</p>
+		
+		<!-- Filtro de tareas -->
+		<div class="filtros" *ngIf="lista.tareas.length > 0">
+			<label for="filtroTareas" class="form-label mb-0"><strong>Filtrar tareas:</strong></label>
+			<select id="filtroTareas" class="form-select form-select-sm w-auto" [(ngModel)]="filtroTareas" name="filtroTareas">
+				<option value="todas">Todas</option>
+				<option value="acabadas">Acabadas</option>
+				<option value="noAcabadas">No acabadas</option>
+			</select>
+		</div>
 
-		<div class="mt-3">
-			<p class="mb-2"><strong>Tareas de ejemplo:</strong></p>
-			<ul>
-				<li *ngFor="let tarea of tareas">{{ tarea }}</li>
-			</ul>
+		<div>
+			<div class="tarea" *ngFor="let tarea of tareasFiltradas">
+				<input type="checkbox" [checked]="tarea.acabada" (change)="toggleTareaAcabada(tarea)">
+				<span [style.text-decoration]="tarea.acabada ? 'line-through' : 'none'">
+					{{ tarea.nombre }}
+				</span>
+			</div>
 		</div>
 
 		<button class="button btn btn-sm btn-primary" (click)="cerrar()">

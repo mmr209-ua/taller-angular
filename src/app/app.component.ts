@@ -1,5 +1,6 @@
-import { Component, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { Component, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgForm } from '@angular/forms';
 import { Lista } from './models/lista';
 
 @Component({
@@ -8,15 +9,18 @@ import { Lista } from './models/lista';
   styleUrl: './app.component.css',
   encapsulation: ViewEncapsulation.None,
 })
+
 export class AppComponent {
   title = 'AppListas';
   msg = "Hola, bienvenido a mi proyecto en Angular";
   listas: Lista[] = [];
+  listasAbiertas = new Set<number>();
   nueva: Lista = new Lista();
   mostrarForm = false;
   listaSeleccionada?: Lista;
   filtroListas: 'todas' | 'visibles' | 'noVisibles' = 'todas';
-
+  @ViewChild('modeloForm') form!: NgForm;
+  
   constructor(private modalService: NgbModal) {}
 
   ngOnInit(): void {
@@ -25,38 +29,43 @@ export class AppComponent {
 
   mostrarFormulario() {
     this.listaSeleccionada = undefined;
-    this.nueva = new Lista();
     this.mostrarForm = true;
+    this.nueva = new Lista();
   }
 
   ocultarFormulario() {
-    this.mostrarForm = false;
     this.listaSeleccionada = undefined;
+    this.mostrarForm = false;
     this.nueva = new Lista();
   }
 
+  toggleMostrarDetalles(lista: Lista) {
+    if (this.listasAbiertas.has(lista.id)) {
+      this.listasAbiertas.delete(lista.id);
+    } else {
+      this.listasAbiertas.add(lista.id);
+    }
+  }
+
   crearLista() {
+    if (!this.form.valid) {
+      return;
+    }
+
     if (this.listaSeleccionada) {
       this.listaSeleccionada.nombre = this.nueva.nombre;
       this.listaSeleccionada.descripcion = this.nueva.descripcion;
       this.listaSeleccionada.color = this.nueva.color;
+      this.listaSeleccionada.visible = this.nueva.visible;
     } else {
       this.nueva.id = Lista.obtenerSiguienteId();
       this.nueva.fechaCreacion = new Date();
       this.listas.push(this.nueva);
     }
 
-    // No crear aquí otra instancia para evitar aumentar el contador dos veces.
+    // No crear aquí otra instancia para evitar aumentar el contador dos veces
     this.listaSeleccionada = undefined;
     this.mostrarForm = false;
-  }
-
-  mostrarDetalle(lista: Lista) {
-    lista.visible = true;
-  }
-
-  ocultarDetalle(lista: Lista): void {
-    lista.visible = false;
   }
 
   abrirModalEliminar(content: TemplateRef<unknown>, lista: Lista): void {
@@ -79,6 +88,7 @@ export class AppComponent {
     this.nueva.nombre = lista.nombre;
     this.nueva.descripcion = lista.descripcion;
     this.nueva.color = lista.color;
+    this.nueva.visible = lista.visible;
     
     this.mostrarForm = true;
   }
@@ -95,3 +105,4 @@ export class AppComponent {
     return this.listas;
   }
 }
+
