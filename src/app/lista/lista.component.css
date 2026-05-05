@@ -5,3 +5,8 @@
 .card-body p {
     margin-bottom: 1rem;
 }
+
+.card-body button {
+    margin-left: 0rem;
+    margin-top: 0.5rem;
+}
