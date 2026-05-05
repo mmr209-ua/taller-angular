@@ -21,6 +21,10 @@ export class ListaComponent {
     tarea.acabada = !tarea.acabada;
   }
 
+  eliminarTarea(tarea: Tarea): void {
+    this.lista.tareas = this.lista.tareas.filter((t) => t !== tarea);
+  }
+
   get tareasFiltradas(): Tarea[] {
     if (this.filtroTareas === 'acabadas') {
       return this.lista.tareas.filter(t => t.acabada);

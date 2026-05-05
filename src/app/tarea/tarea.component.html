@@ -1,6 +1,11 @@
 <div class="tarea" *ngIf="tarea">
-	<input type="checkbox" [checked]="tarea.acabada" (change)="toggle()">
-	<span [style.text-decoration]="tarea.acabada ? 'line-through' : 'none'">
-		{{ tarea.nombre }}
-	</span>
+	<div class="tarea-info">
+		<input type="checkbox" [checked]="tarea.acabada" (change)="toggle()">
+		<span [style.text-decoration]="tarea.acabada ? 'line-through' : 'none'">
+			{{ tarea.nombre }}
+		</span>
+	</div>
+	<button type="button" class="btn btn-sm tarea-borrar" (click)="eliminar()" aria-label="Eliminar tarea">
+		<img src="assets/papelera.png" alt="Eliminar" class="icono-borrar">
+	</button>
 </div>

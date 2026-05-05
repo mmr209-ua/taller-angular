@@ -9,8 +9,13 @@ import { Tarea } from '../models/tarea';
 export class TareaComponent {
   @Input() tarea!: Tarea;
   @Output() cambiarEstado = new EventEmitter<void>();
+  @Output() eliminarTarea = new EventEmitter<void>();
 
   toggle(): void {
     this.cambiarEstado.emit();
+  }
+
+  eliminar(): void {
+    this.eliminarTarea.emit();
   }
 }

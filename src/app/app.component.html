@@ -29,18 +29,20 @@
         <button type="button" class="button btn btn-sm btn-secondary" (click)="ocultarFormulario()">Cancelar</button>
       </div>
     </form>
-    
-    <button *ngIf="!mostrarForm" class="button btn btn-sm btn-primary" (click)="mostrarFormulario()">Añadir nueva lista</button>
 
-    <div class="filtros" *ngIf="listas.length > 0">
-      <label for="filtroListas" class="form-label mb-0">Filtrar listas:</label>
-      <select id="filtroListas" class="form-select form-select-sm w-auto" [(ngModel)]="filtroListas" name="filtroListas">
-        <option value="todas">Todas</option>
-        <option value="visibles">Visibles</option>
-        <option value="noVisibles">No visibles</option>
-      </select>
+    <div class="barra">
+      
+      <div class="filtros" *ngIf="listas.length > 0">
+        <label for="filtroListas" class="form-label mb-0">Filtrar listas:</label>
+        <select id="filtroListas" class="form-select form-select-sm w-auto" [(ngModel)]="filtroListas" name="filtroListas">
+          <option value="todas">Todas</option>
+          <option value="visibles">Visibles</option>
+          <option value="noVisibles">No visibles</option>
+        </select>
+      </div>
+      <button *ngIf="!mostrarForm" class="button btn btn-sm btn-success" (click)="mostrarFormulario()">Añadir nueva lista</button>
     </div>
-
+    
     <div *ngFor="let lista of listasFiltradas" class="cards">
       <div class="card" [ngStyle] = "{'background-color': lista.color}">
         <div class="card-header">
@@ -55,7 +57,7 @@
           <button *ngIf="!listasAbiertas.has(lista.id)" class="button btn btn-sm btn-primary" (click)="toggleMostrarDetalles(lista)">
             Ver detalle
           </button>
-          <button class="button btn btn-sm btn-secondary" (click)="modificarLista(lista)">
+          <button class="button btn btn-sm btn-primary" (click)="modificarLista(lista)">
             Modificar
           </button>
           <button class="button btn btn-sm btn-danger" (click)="abrirModalEliminar(confirmarEliminacionModal, lista)">

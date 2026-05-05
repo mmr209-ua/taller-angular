@@ -17,7 +17,8 @@
 			<app-tarea
 				*ngFor="let tarea of tareasFiltradas"
 				[tarea]="tarea"
-				(cambiarEstado)="toggleTareaAcabada(tarea)">
+				(cambiarEstado)="toggleTareaAcabada(tarea)"
+				(eliminarTarea)="eliminarTarea(tarea)">
 			</app-tarea>
 		</div>
 
