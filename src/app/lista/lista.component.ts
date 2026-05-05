@@ -12,6 +12,8 @@ export class ListaComponent {
   @Output() cerrarDetalle = new EventEmitter<void>();
 
   filtroTareas: 'todas' | 'acabadas' | 'noAcabadas' = 'todas';
+  mostrarFormularioNuevaTarea = false;
+  nuevaTareaNombre = '';
 
   cerrar(): void {
     this.cerrarDetalle.emit();
@@ -19,6 +21,27 @@ export class ListaComponent {
 
   toggleTareaAcabada(tarea: Tarea): void {
     tarea.acabada = !tarea.acabada;
+  }
+
+  abrirFormularioNuevaTarea(): void {
+    this.mostrarFormularioNuevaTarea = true;
+  }
+
+  cancelarNuevaTarea(): void {
+    this.mostrarFormularioNuevaTarea = false;
+    this.nuevaTareaNombre = '';
+  }
+
+  agregarTarea(): void {
+    const nombre = this.nuevaTareaNombre.trim();
+
+    if (!nombre) {
+      return;
+    }
+
+    this.lista.tareas.push(new Tarea(nombre));
+    this.nuevaTareaNombre = '';
+    this.mostrarFormularioNuevaTarea = false;
   }
 
   eliminarTarea(tarea: Tarea): void {

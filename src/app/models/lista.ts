@@ -21,9 +21,7 @@ export class Lista {
         this.visible=true;
         this.fechaCreacion = new Date();
         this.tareas = [
-            new Tarea("Tarea 1"),
-            new Tarea("Tarea 2"),
-            new Tarea("Tarea 3")
+            new Tarea("Tarea 1")
         ];
     }
 }

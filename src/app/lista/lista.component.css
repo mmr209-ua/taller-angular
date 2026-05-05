@@ -10,3 +10,26 @@
     margin-left: 0rem;
     margin-top: 0.5rem;
 }
+
+.nueva-tarea {
+    display: grid;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.acciones-lista {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.add-tarea-button {
+    margin: 0rem;
+    padding: 0rem;
+    margin-bottom: 0.5rem;
+}
+
+.acciones-nueva-tarea {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}

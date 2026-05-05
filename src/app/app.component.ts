@@ -12,7 +12,7 @@ import { Lista } from './models/lista';
 
 export class AppComponent {
   title = 'AppListas';
-  msg = "Hola, bienvenido a mi proyecto en Angular";
+  msg = "Hola, bienvenido al proyecto en Angular de Sara y Morgana :)";
   listas: Lista[] = [];
   listasAbiertas = new Set<number>();
   nueva: Lista = new Lista();
